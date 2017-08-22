@@ -32,13 +32,11 @@ X=oneHotEncoder.fit_transform(X).toarray()
 labelEncorder_y=LabelEncoder()
 y=labelEncorder_y.fit_transform(y)
 
-
-
-
-#
 ## Splitting the dataset into the Training set and Test set
-#from sklearn.cross_validation import train_test_split
-#X_train, X_test, y_train, y_test = train_test_split(X, y, test_size = 0.2, random_state = 0)
+from sklearn.cross_validation import train_test_split
+X_train, X_test, y_train, y_test = train_test_split(X, y, test_size = 0.2, random_state = 0)
+
+
 #
 #
 #
