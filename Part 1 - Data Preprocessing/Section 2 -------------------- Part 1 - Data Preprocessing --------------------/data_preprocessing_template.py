@@ -22,7 +22,7 @@ imputer = Imputer(missing_values = 'NaN', strategy = 'mean', axis = 0)
 imputer = imputer.fit(X[:,1:3])
 X[:, 1:3] = imputer.transform(X[:,1:3])
 
-#Encording categorical data
+#Encording categorical data - to identify uniquely
 from sklearn.preprocessing import LabelEncoder , OneHotEncoder
 labelEncorder_X=LabelEncoder()
 X[:,0]=labelEncorder_X.fit_transform(X[:,0])
@@ -36,14 +36,8 @@ y=labelEncorder_y.fit_transform(y)
 from sklearn.cross_validation import train_test_split
 X_train, X_test, y_train, y_test = train_test_split(X, y, test_size = 0.2, random_state = 0)
 
-
-#
-#
-#
 ## Feature Scaling
-#"""from sklearn.preprocessing import StandardScaler
-#sc_X = StandardScaler()
-#X_train = sc_X.fit_transform(X_train)
-#X_test = sc_X.transform(X_test)
-#sc_y = StandardScaler()
-#y_train = sc_y.fit_transform(y_train)"""
+from sklearn.preprocessing import StandardScaler
+sc_X = StandardScaler()
+X_train = sc_X.fit_transform(X_train)
+X_test = sc_X.transform(X_test)
