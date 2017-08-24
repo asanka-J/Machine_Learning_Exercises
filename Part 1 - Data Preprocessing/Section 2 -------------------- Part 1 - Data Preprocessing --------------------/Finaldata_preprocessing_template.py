@@ -15,22 +15,6 @@ y = dataset.iloc[:, 3].values
 np.set_printoptions(threshold=np.nan)
 
 
-# Taking care of missing data
-#from sklearn.preprocessing import Imputer
-#imputer = Imputer(missing_values = 'NaN', strategy = 'mean', axis = 0)
-##obj       classs para              
-#imputer = imputer.fit(X[:,1:3])
-#X[:, 1:3] = imputer.transform(X[:,1:3])
-
-#Encording categorical data - to identify uniquely
-#from sklearn.preprocessing import LabelEncoder , OneHotEncoder
-#labelEncorder_X=LabelEncoder()
-#X[:,0]=labelEncorder_X.fit_transform(X[:,0])
-#oneHotEncoder=OneHotEncoder(categorical_features=[0])
-#X=oneHotEncoder.fit_transform(X).toarray()
-#
-#labelEncorder_y=LabelEncoder()
-#y=labelEncorder_y.fit_transform(y)
 
 ## Splitting the dataset into the Training set and Test set
 from sklearn.cross_validation import train_test_split
