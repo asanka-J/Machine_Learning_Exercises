@@ -1,0 +1,44 @@
+# Simple linear regression
+
+# Importing the dataset
+dataset = read.csv('Salary_Data.csv')
+
+# Splitting the dataset into the Training set and Test set
+ install.packages('caTools')
+library(caTools)
+set.seed(123)
+split = sample.split(dataset$Salary, SplitRatio = 2/3)
+training_set = subset(dataset, split == TRUE)
+test_set = subset(dataset, split == FALSE)
+
+#Fitting Simple linerar regression to the training set
+regressor=lm(formula = Salary ~YearsExperience,data=training_set)
+
+
+#prediction -test set results
+y_pred=predict(regressor,newdata = test_set)
+
+#visualising the training set results
+# install.packages("ggplot2")
+# library(ggplot2)
+
+ggplot()  +
+  geom_point(aes(x=training_set$YearsExperience,y=training_set$Salary) ,
+            colour='red' )+
+  geom_line(aes(x=training_set$YearsExperience,y=predict(regressor,newdata = training_set)),
+            colour='blue')+
+  ggtitle('Salary vs Exp (training set)') +
+  xlab('years of exp')+
+  ylab('Salary')
+
+#PLot test set
+
+ggplot()  +
+  geom_point(aes(x=test_set$YearsExperience,y=test_set$Salary) ,
+             colour='red' )+
+  geom_line(aes(x=training_set$YearsExperience,y=predict(regressor,newdata = training_set)),
+            colour='blue')+
+  ggtitle('Salary vs Exp (test set)') +
+  xlab('years of exp')+
+  ylab('Salary')
+
