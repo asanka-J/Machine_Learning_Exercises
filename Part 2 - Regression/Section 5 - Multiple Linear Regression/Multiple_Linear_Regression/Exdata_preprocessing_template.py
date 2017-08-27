@@ -36,3 +36,28 @@ regressor.fit(X_train,y_train)
 
 #PRedicting the test results
 y_pred=regressor.predict(X_test)
+
+#Building the optimal model using Backward ELimination #need to add b0 as 1 since b0x0 ->x0=1
+X=np.append(arr=np.ones((50,1)).astype(int),values=X,axis=1)
+
+import statsmodels.formula.api as sm
+X_opt=X[:,[0,1,2,3,4,5]]#X_opt will only contain independent variables which are statisticly effective at the end
+regressor_OLS=sm.OLS(endog=y,exog=X_opt).fit()
+regressor_OLS.summary()
+
+X_opt=X[:,[0,1,3,4,5]]#removed X2
+regressor_OLS=sm.OLS(endog=y,exog=X_opt).fit()
+regressor_OLS.summary()
+
+
+X_opt=X[:,[0,3,4,5]]#removed X1
+regressor_OLS=sm.OLS(endog=y,exog=X_opt).fit()
+regressor_OLS.summary()
+
+X_opt=X[:,[0,3,5]]#removed X2
+regressor_OLS=sm.OLS(endog=y,exog=X_opt).fit()
+regressor_OLS.summary()
+
+X_opt=X[:,[0,3]]#removed X2
+regressor_OLS=sm.OLS(endog=y,exog=X_opt).fit()
+regressor_OLS.summary()
