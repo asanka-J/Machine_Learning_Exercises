@@ -6,9 +6,9 @@ import matplotlib.pyplot as plt
 import pandas as pd
 
 # Importing the dataset
-dataset = pd.read_csv('Position_Salaries.csv')
-X = dataset.iloc[:, 1:2].values
-y = dataset.iloc[:, 2].values
+dataset1 = pd.read_csv('Position_Salaries.csv')
+X = dataset1.iloc[:, 1:2].values
+y = dataset1.iloc[:, 2].values
 
 # Fitting Random Forest Regression to the dataset
 from sklearn.ensemble import RandomForestRegressor
