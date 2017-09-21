@@ -44,9 +44,10 @@ y = dataset.iloc[:, 1].values
 from sklearn.cross_validation import train_test_split
 X_train, X_test, y_train, y_test = train_test_split(X, y, test_size = 0.20, random_state = 0)
 
-# Fitting Naive Bayes to the Training set
-from sklearn.naive_bayes import GaussianNB
-classifier = GaussianNB()
+
+# Fitting Random Forest Classification to the Training set
+from sklearn.ensemble import RandomForestClassifier
+classifier = RandomForestClassifier(n_estimators = 10, criterion = 'entropy', random_state = 0)
 classifier.fit(X_train, y_train)
 
 # Predicting the Test set results
@@ -56,5 +57,25 @@ y_pred = classifier.predict(X_test)
 from sklearn.metrics import confusion_matrix
 cm = confusion_matrix(y_test, y_pred)
 
-accuracy=(cm.item(0,0)+cm.item(1,1))/len(X_test)
+
+
+
+""" 0  1
+0   87	10
+1   46	57
+"""
 #0.72
+TP=cm.item(1,1)
+TN=cm.item(0,0)
+FN=cm.item(0,1)
+FP=cm.item(1,0)
+
+Accuracy = (TP + TN) / (TP + TN + FP + FN)
+Precision = TP / (TP + FP)
+Recall = TP / (TP + FN)
+F1_Score = 2*Precision*Recall / (Precision+Recall)
+
+print("Accuracy =",round(Accuracy, 2)*100,'%')
+print("Precision =",round(Precision, 2)*100,'%')
+print("Recall =",round(Recall, 2)*100,'%')
+print("F1_Score =",round(F1_Score, 2)*100,'%')
