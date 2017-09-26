@@ -34,6 +34,7 @@ Keras is a high-level neural networks API, written in Python and capable of runn
 #dataset churn_modelling :contains bank customer information for 6 months.@predict leave or stay
 
 # Importing the libraries
+
 import numpy as np
 import matplotlib.pyplot as plt
 import pandas as pd
@@ -69,3 +70,40 @@ X_test = sc.transform(X_test)
 import keras
 from keras.models import Sequential# required to init ANN
 from keras.layers import Dense #required to build layers of ANN
+
+# Initialising the ANN
+classifier = Sequential()
+
+# Adding the input layer and the first hidden layer
+classifier.add(Dense(output_dim = 6, init = 'uniform', activation = 'relu', input_dim = 11))#
+#Dense function initialize the weights
+#output dim=>average #output+input=> (no of input columns+ output )/2=>(11+1)/2
+
+# Adding the second hidden layer
+classifier.add(Dense(output_dim = 6, init = 'uniform', activation = 'relu'))
+#no need at this step , just to express how to add another hidden layer
+
+# Adding the output layer
+classifier.add(Dense(output_dim = 1, init = 'uniform', activation = 'sigmoid'))
+#if output is more than 1 catagorical variable apply activation='softmax'and output_dim="#outputs"
+
+# Compiling the ANN
+classifier.compile(optimizer = 'adam', loss = 'binary_crossentropy', metrics = ['accuracy'])
+#adam-type of schocastic gradient decent   #loss = 'binary_crossentropy'
+# Fitting the ANN to the Training set
+#metrics=>output evaluation cretarian 
+
+classifier.fit(X_train, y_train, batch_size = 10, nb_epoch = 100)
+#batch_size =>  
+#nb_epoch =>
+
+
+# Part 3 - Making the predictions and evaluating the model
+
+# Predicting the Test set results
+y_pred = classifier.predict(X_test)
+y_pred = (y_pred > 0.5) #convert to true false threshold=>0.5 
+
+# Making the Confusion Matrix
+from sklearn.metrics import confusion_matrix
+cm = confusion_matrix(y_test, y_pred)
