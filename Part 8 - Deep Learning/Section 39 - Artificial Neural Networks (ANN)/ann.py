@@ -31,6 +31,7 @@ Keras is a high-level neural networks API, written in Python and capable of runn
 -Runs seamlessly on CPU and GPU.
 """
 # Part 1 - Data Preprocessing
+#dataset churn_modelling :contains bank customer information for 6 months.@predict leave or stay
 
 # Importing the libraries
 import numpy as np
@@ -38,7 +39,7 @@ import matplotlib.pyplot as plt
 import pandas as pd
 
 # Importing the dataset
-dataset = pd.read_csv('Churn_Modelling.csv')
+dataset = pd.read_c----sv('Churn_Modelling.csv')
 X = dataset.iloc[:, 3:13].values
 y = dataset.iloc[:, 13].values
 
@@ -61,3 +62,10 @@ from sklearn.preprocessing import StandardScaler
 sc = StandardScaler()
 X_train = sc.fit_transform(X_train)
 X_test = sc.transform(X_test)
+
+# Part 2 - Now let's make the ANN!
+
+# Importing the Keras libraries and packages
+import keras
+from keras.models import Sequential# required to init ANN
+from keras.layers import Dense #required to build layers of ANN
