@@ -81,6 +81,7 @@ classifier.add(Dense(output_dim = 6, init = 'uniform', activation = 'relu', inpu
 
 # Adding the second hidden layer
 classifier.add(Dense(output_dim = 6, init = 'uniform', activation = 'relu'))
+ #relu removes the negative parts of the fuction
 #no need at this step , just to express how to add another hidden layer
 
 # Adding the output layer
