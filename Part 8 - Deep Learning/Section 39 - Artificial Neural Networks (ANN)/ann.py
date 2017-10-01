@@ -1,4 +1,4 @@
-p;[# Artificial Neural Network
+# Artificial Neural Network
 
 # Installing Theano
 # pip install --upgrade --no-deps git+git://github.com/Theano/Theano.git
